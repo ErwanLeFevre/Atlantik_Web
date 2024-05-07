@@ -2,6 +2,8 @@
 namespace App\Controllers;
 use App\Models\ModeleClient;
 use App\Models\ModeleLiaison;
+use App\Models\ModeleSecteur;
+use App\Models\ModelePort;
 helper(['url', 'assets', 'form']);
 
 class atlantik extends BaseController
@@ -83,10 +85,10 @@ class atlantik extends BaseController
         } else
         {
             $data['uneLiaison'] = $modLiaison->find($noliaison);
-            if (empty($data['uneLiaison'])) { // pas de Liaison correspondant à la référence
+            if (empty($data['uneLiaison'])) { 
                 throw\CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
             }
-            $data['TitreDeLaPage'] = $data['uneLiaison']->noliaison; // ->libelle : $returnType = 'object' !
+            $data['TitreDeLaPage'] = $data['uneLiaison']->noliaison; 
             return view('Templates/Header')
             . view('Visiteur/vue_VoirDetailUneLiaison', $data)
             . view('Templates/Footer');
